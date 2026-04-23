@@ -1,0 +1,495 @@
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* BLOBLAR */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+}
+
+/* 1-blob */
+body::before {
+  background: #00f0ff;
+  top: -150px;
+  left: -150px;
+  animation: move1 12s infinite alternate ease-in-out;
+}
+
+/* 2-blob */
+body::after {
+  background: #a855f7;
+  bottom: -150px;
+  right: -150px;
+  animation: move2 14s infinite alternate ease-in-out;
+}
+
+/* ANIMATION */
+@keyframes move1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(200px, 150px) scale(1.2);
+  }
+}
+
+@keyframes move2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-200px, -150px) scale(1.3);
+  }
+}
+
+
+
+
+/* NAVBAR */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 80px;
+}
+
+.nav-left a,
+.nav-right a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  background: purple;
+  border-radius: 50%;
+}
+
+/* HOME */
+.home{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 120px;
+  height: 80vh;
+}
+
+/* LEFT IMAGE */
+.avatar-bg {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffffff, #00c6ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-bg img {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+}
+
+/* RIGHT */
+.right h1 {
+  font-size: 42px;
+  margin: 0;
+}
+
+.right h1 span {
+  color: #5a67ff;
+}
+
+.right h2 {
+  margin: 10px 0;
+  color: #ffffffdc;
+    font-size: 25px;
+}
+
+/* INFO */
+.info p {
+  font-size: 25px;
+  margin: 6px 0;
+  color: #ffffffd8;
+}
+
+/* ICONS */
+.icons {
+  margin-top: 20px;
+}
+
+
+
+/* WRAPPER */
+.nav-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* NAV CONTAINER */
+.nav-container {
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.647);
+  backdrop-filter: blur(15px);
+}
+
+/* ITEM */
+.nav-item {
+  position: relative;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+/* TEXT */
+.nav-item span {
+  position: relative;
+  z-index: 2;
+}
+
+/* ACTIVE BACKGROUND (HARAKATLANADI) */
+.active-pill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, cyan, blue, purple);
+  border-radius: 50px;
+  z-index: 1;
+}
+
+/* HOVER */
+.nav-item:hover {
+  transform: scale(1.05);
+  transition: 0.2s;
+}
+
+
+
+/* ABOUT PAGE */
+.about {
+  text-align: center;
+}
+
+/* CARD */
+.about-card {
+  margin: 20px auto;
+  width: 500px;
+  padding: 40px;
+  border-radius: 40px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+
+  transition: 0.3s;
+}
+
+/* IMAGE */
+.about-img {
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 300px;
+  transition: 0.3s;
+}
+
+
+.project {
+  text-align: center;
+}
+
+/* QUOTE CARD */
+.quote-box {
+  margin: 30px auto;
+  width: 320px;
+  padding: 25px;
+  font-size: 18px;
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+
+  box-shadow: 0 0 20px rgba(0,255,255,0.2);
+}
+
+/* BUTTON */
+.project button {
+  margin-top: 10px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(45deg, cyan, purple);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.project button:hover {
+  box-shadow: 0 0 15px cyan;
+}
+
+/* IMAGE */
+.project-img {
+  margin-top: 25px;
+  border-radius: 20px;
+  width: 300px;
+}
+
+
+
+
+.contact {
+  text-align: center;
+}
+
+/* CARD */
+.contact-card {
+  width: 320px;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 25px rgba(0,255,255,0.2);
+}
+
+/* INPUT GROUP */
+.input-group {
+  position: relative;
+  margin: 20px 0;
+}
+
+/* INPUT */
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+/* LABEL */
+.input-group label {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  color: #aaa;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+
+.input-group input:focus + label,
+.input-group input:valid + label,
+.input-group textarea:focus + label,
+.input-group textarea:valid + label {
+  top: -10px;
+  font-size: 14px;
+  color: cyan;
+}
+
+/* BUTTON */
+.contact button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(45deg, cyan, purple);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.contact button:hover {
+  box-shadow: 0 0 15px cyan;
+}
+
+
+
+
+
+
+
+
+
+
+.icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+  color: white;
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+
+/* Ranglar */
+.instagram {
+  background: linear-gradient(45deg, #feda75, #d62976, #962fbf);
+}
+
+.facebook {
+  background: #1877f2;
+}
+
+.github {
+  background: #333;
+}
+
+.telegram {
+  background: #229ED9;
+  
+}
+
+/* Hover */
+.icon:hover {
+  transform: translateY(-8px) scale(1.1);
+  box-shadow: 0 0 20px rgba(255,255,255,0.6);
+}
+
+
+.iconlar{
+  display: flex;
+  margin: 5px;
+  gap: 20px;
+}
+
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+  flex-wrap: wrap; 
+}
+
+
+/* /* Ob Havo Sayti .about */
+
+/* 
+
+.container {
+
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.container h1 {
+  
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.search-box {
+  
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+  
+    flex: 1;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+
+.search-box button {
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: none;
+    background: #ffdd57;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-box button:hover {
+    background: #ffd000;
+    transform: scale(1.05);
+}
+
+.weather-info h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+#temperature {
+    font-size: 42px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+#description {
+    font-size: 18px;
+    text-transform: capitalize;
+    opacity: 0.9;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 12px;
+    
+}
+
+.details p {
+    font-size: 14px;
+}
+
+.error {
+    margin-top: 15px;
+    color: #ffb3b3;
+    font-size: 14px;
+    
+} */
