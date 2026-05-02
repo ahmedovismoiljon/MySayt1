@@ -1,60 +1,92 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from '../Navbar';
+import react, {useState, useEffect} from 'react'
 
-function Davlat() {
-  const [davlatlar, setDavlatlar] = useState([]);
+const Davlat = () => {
+    const [countries, setCountries] = useState([])
+    const [loading, setLoading] = useState([true]);
+    const [error, setError] = useState([null]);
+    const[region, setRegion] = useState('');
+    const[search, setSearch] = useState('')
 
+    const API_URL = 'https://restcountries.com/v3.1/all?fields=name,capital,currencies,continents,borders,flags,languages,population,region'
 
-  const malumotniOlibKel = () => {
-    fetch("https://restcountries.com/v3.1/all?fields=name,capital,currencies,continents,borders,flags,languages,population,region")
-      .then((javob) => javob.json())
-      .then((data) => {
-        setDavlatlar(data); // Kelgan ma'lumotni savatchaga solamiz
-      })
-      .catch((xato) => console.log("Xatolik yuz berdi:", xato));
-  };
+    useEffect(() => {
+        const getCountries = async () => {
+            try{
+                const response = await fetch(API_URL)
 
+                if(!response.ok){
+                    throw new Error('Ma`lumot yuklashda xatolik yuz berdi')
+                }
 
-  useEffect(() => {
-    malumotniOlibKel();
-  }, []);
+                const data = await response.json()
 
-  return (
-    <div style={{ 
-      display: 'flex', 
-      flexWrap: 'wrap', 
-      gap: '20px', 
-      justifyContent: 'center', 
-      padding: '20px' 
-    }}>
-      {davlatlar.map((item, index) => (
-        <div 
-          key={index} 
-          style={{ 
-            border: '1px solid #ddd', 
-            padding: '15px', 
-            borderRadius: '12px',
-            width: '200px',
-            textAlign: 'center',
-            boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
-          }}
-        >
-          {/* Bayroq rasmi */}
-          <img 
-            src={item.flags.png} 
-            alt={item.name.common} 
-            style={{ width: '100%', height: '100px', objectFit: 'cover', borderRadius: '4px' }} 
-          />
-          
-          {/* Davlat nomi */}
-          <h3 style={{ fontSize: '18px', margin: '10px 0' }}>{item.name.common}</h3>
-          
-          {/* Region */}
-          <p style={{ color: 'gray', fontSize: '14px' }}>Region: {item.region}</p>
+                const sortedData = data.sort((a, b) =>
+                    a.name.common.localeCompare(b.name.common)
+            )
+
+            setCountries(sortedData)
+            }catch(err) {
+                setError(err.message)
+
+            }finally{
+                setLoading(false)
+            }
+        }
+
+        getCountries()
+    }, [])
+    const filterRegion = countries.filter((country) =>{
+      const selectRegion = region === '' || country.region === region
+      return selectRegion;
+
+    })
+    if (loading) return <h2 style={{textAlign:'center'}}>Dunyo Xaritasi Yuklanmoqda   ffffff...</h2>
+    // if (error) return <h2 style={{color:'red', textAlign:'center'}}>Xato: yana {error}</h2>
+
+    return(
+        <div style={{padding:'20px', fontFamily:'Arial'}}>
+            <h1 style={{textAlign:'center'}}>Country Directory</h1>
+            <input type="text" onChange={ (e) => setSearch(e.target.value)} />
+
+            <select name="" id="" onChange={ (e) => setRegion(e.target.value)}>
+              <option value="">Barchasi</option>
+              <option value="Africa">Africa</option>
+              <option value="Americas">Americas</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Oceania">Oceania</option>
+            </select>
+
+            <div
+            style={{
+                display:'grid',
+                gridTemplateColumns:'repeat(auto-fill, minmax(250px, 1fr))',
+                gap:'20px',
+                marginTop:'20px'
+            }}>
+                {filterRegion.map((country, index) => (
+                    <div key={index} style={{
+                        border:'1px solid #ddd',
+                        borderRadius:'10px',
+                        padding:'15px',
+                        boxShadow:'0 4px 8px rgba(0,0,0,0.1)',
+                        backgroundColor:'none'
+                    }}>
+                        <img
+                        src={country.flags.svg}
+                        alt={country.name.common}
+                        style={{width:'100%', height:'150px', objectFit:'cover', borderRadius:'5px'}} 
+                        />
+
+                        <h3 style={{margin:'10px 0',}}>{country.name.common}</h3>
+                        <p><strong>States:</strong> {country.capital ? country.capital[0] : 'Mavjud emas'}</p>
+                        <p><strong>Region:</strong> {country.region}</p>
+                        <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
+                    </div>
+                ))}
+            </div>
         </div>
-      ))}
-    </div>
-  );
-}
+    )
 
+}
 export default Davlat;
